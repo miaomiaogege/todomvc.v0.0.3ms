@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ui-router</title>
+    <style>.active { color: red; font-weight: bold; }</style>
+    <script src="node_modules/.1.6.3@angular/angular.js"></script>
+    <script src="node_modules/.0.4.2@angular-ui-router/release/angular-ui-router.js"></script>
+
+</head>
+<body ng-app="helloworld" ng-controller="hi">
+
+
+<a ui-sref="hello" ui-sref-active="active">Hello</a>
+<a ui-sref="about" ui-sref-active="active">About</a>
+
+<ui-view></ui-view>
+
+
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var myApp = angular.module('helloworld', ['ui.router']);
+    myApp.controller('hi',['$scope',function ($scope) {
+
+        $scope.a='sdfjksdfjksafhkjas'
+
+    }]);
+
+    myApp.component('hello',
+        {
+        template:  '<h3>{{$ctrl.greeting}} Solar System!</h3>' +
+        '<button ng-click="$ctrl.toggleGreeting()">toggle greeting</button>',
+
+        controller: function() {
+            this.greeting = 'hello';
+
+            this.toggleGreeting = function() {
+                this.greeting = (this.greeting == 'hello') ? 'whats up' : 'hello'
+            }
+        }
+    });
+
+
+    myApp.config(function($stateProvider) {
+
+
+
+
+
+        var helloGalaxy = {
+            name: 'hello',
+            url: '/hello',
+            component: 'hello'
+        };
+
+
+        var helloState = {
+            name: 'hello',
+            url: '/hello',
+            template: '<h3>{{a}}</h3>',
+            controller:function () {
+                console.log('hello')
+            }
+        };
+
+        var aboutState = {
+            name: 'about',
+            url: '/about',
+            template: '<h3>{{a}}</h3>'
+        };
+        $stateProvider.state(helloGalaxy);
+        $stateProvider.state(helloState);
+        $stateProvider.state(aboutState);
+    });
+
+</script>
+
+
+
+
+</body>
+</html>
